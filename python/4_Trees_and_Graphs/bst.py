@@ -1,5 +1,6 @@
+BST_Mixin_Next_Node = __import__('4_6').BST_Mixin_Next_Node 
 
-class BST(object):
+class BST(BST_Mixin_Next_Node):
     def __init__(self, key=None, value=None, parent=None):
         self.key = key
         self.value = value
@@ -32,14 +33,6 @@ class BST(object):
             return self.right_child.search(key)
         else:
             return False
-
-    def which_branch(self):
-        if self.parent.left_child == self:
-            return 'left'
-        elif self.parent.right_child == self:
-            return 'right'
-        else: # No children
-            return None
 
     def delete(self, key):
         """
@@ -81,31 +74,6 @@ class BST(object):
             successor = node.find_successor()
             successor.splice_out()
 
-    def find_successor(self):
-        """
-        Find the element that has the next highest key after self.
-        """
-        successor = None
-        if self.right_child:
-            successor = self.right_child.find_min()
-        else:
-            if self.parent and self.which_branch() == 'left':
-                successor = self.parent
-            elif self.parent and self.which_branch() == 'right':
-                self.parent.right_child = None
-                self.parent.find_successor()
-                self.parent.right_child = self
-        return successor
-
-    def find_min(self):
-        """
-        Find deepest left child.
-        """
-        current = self
-        while current.left_child:
-            current = current.left_child
-        return current
-
     def splice_out(self):
         if not self.left_child and not self.right_child:
             if self.which_child() == 'left':
@@ -114,8 +82,6 @@ class BST(object):
                 self.parent.right_child = None
         elif bool(self.left_child) != bool(self.right_child):
 
-    def rank(self, key):
-        pass
 
     def __iter__(self):
         if self:

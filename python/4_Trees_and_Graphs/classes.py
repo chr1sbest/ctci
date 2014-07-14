@@ -1,4 +1,5 @@
 import random
+from bst import BST
 
 class BinaryTree(object):
     def __init__(self, root):
