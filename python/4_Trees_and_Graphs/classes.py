@@ -2,8 +2,8 @@ import random
 from bst import BST
 
 class BinaryTree(object):
-    def __init__(self, root):
-        self.root = root
+    def __init__(self, value):
+        self.value = value
         self.left_child = None
         self.right_child = None
 
@@ -25,7 +25,7 @@ class BinaryTree(object):
 
     def __str__(self):
         return "[ {0} [ {1} | {2} ] ]".format(
-                self.root, self.left_child, self.right_child)
+                self.value, self.left_child, self.right_child)
 
 
 class DirectedGraph(object):

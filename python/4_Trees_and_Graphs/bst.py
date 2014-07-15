@@ -81,6 +81,7 @@ class BST(BST_Mixin_Next_Node):
             elif self.which_child() == 'right':
                 self.parent.right_child = None
         elif bool(self.left_child) != bool(self.right_child):
+            pass
 
 
     def __iter__(self):
@@ -92,7 +93,7 @@ class BST(BST_Mixin_Next_Node):
                 yield self.right_child.key
 
 
-    @attribute
+    @property
     def size(self):
         if not self.left_child and not self.right_child:
             return 1
