@@ -20,11 +20,14 @@ def contains(root, target):
     return contains(root.left_child, target) or contains(root.right_child, target)
 
 def ancestor_helper(root, node1, node2):
-    if not root:
-        return None
-    elif root is node1 or node2:
+    if not root:                    
+        # there is no match
+        return False
+    elif root is node1 or node2:    
+        # one node is a child/grandchild of the other
         return root
-    else:
+    else:                           
+        # recursively search the side that the nodes are on
         node1_left = contains(root.left_child, node1)
         node2_left = contains(root.left_child, node2)
 
