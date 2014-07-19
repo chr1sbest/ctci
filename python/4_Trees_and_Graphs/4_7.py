@@ -17,7 +17,8 @@ def contains(root, target):
         return False
     elif root is target:
         return True
-    return contains(root.left_child, target) or contains(root.right_child, target)
+    left, right = root.left_child, root.right_child
+    return contains(left, target) or contains(right, target)
 
 def ancestor_helper(root, node1, node2):
     if not root:                    
