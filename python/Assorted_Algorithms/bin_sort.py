@@ -2,7 +2,6 @@ def bucket_sort(array, bucket_range=10):
     """
     Time complexity: O(n+k)
     """
-    
     buckets = [[] for x in range(bucket_range)]
     for index, val in enumerate(array):
         buckets[val].append(val)
