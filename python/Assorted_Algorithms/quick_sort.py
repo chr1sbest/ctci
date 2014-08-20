@@ -10,10 +10,19 @@ def quick_sort(array):
         return array
     else:
         pivot = array[0]    # can optimize to find better pivot.
-        less = filter(lambda x: x < pivot, array)
-        equal = filter(lambda x: x == pivot, array)
-        greater = filter(lambda x: x > pivot, array)
+        less, equal, greater = partition(array, pivot)
         return quick_sort(less) + equal + quick_sort(greater)
+
+def partition(array, pivot):
+    less, equal, greater = [], [], []
+    for element in array:
+        if element < pivot:
+            less.append(element)
+        elif element == pivot:
+            equal.append(element)
+        else:
+            greater.append(element)
+    return less, equal, greater
 
 if __name__ == "__main__":
     a = [1, 5, 23, 13, 51, 34]
