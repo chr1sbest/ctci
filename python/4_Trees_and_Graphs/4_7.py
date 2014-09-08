@@ -13,7 +13,7 @@ def contains(root, target):
     """
     Recursively checks if the target node is a child of the root.
     """
-    if not root:
+    if root == None:
         return False
     elif root is target:
         return True
