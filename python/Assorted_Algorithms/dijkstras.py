@@ -51,12 +51,14 @@ def test_dijkstras():
     vertex_d.adjacent_nodes = {vertex_b: 1, vertex_c: 11, vertex_t: 5}
     vertex_t.adjacent_nodes = {vertex_c: 3, vertex_d: 5}
 
+    # s -> b -> d = 3
     shortest_from_s_to_d = dijkstra(vertex_s, vertex_d)
     assert shortest_from_s_to_d == 3
 
-    # Reset all vertices
+    # Reset distance and visited value for all vertices
     for vertex in [vertex_s, vertex_a, vertex_b, vertex_c, vertex_d, vertex_t]:
         vertex.reset()
 
+    # d -> c = 11  ||  d -> t -> c = 8
     shortest_from_d_to_c = dijkstra(vertex_d, vertex_c)
     assert shortest_from_d_to_c == 8
