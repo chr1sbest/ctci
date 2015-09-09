@@ -44,6 +44,6 @@ class Node(object):
         self.next = self.next.next
         return data
 
-class Heap(object)
+class Heap(object):
     def __init__(self):
         pass

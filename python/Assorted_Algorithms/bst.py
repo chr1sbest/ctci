@@ -32,7 +32,6 @@ class BST(object):
         else:
             return False
 
-    """
     def delete(self, key):
         """
         #Remove a node from the BST.
@@ -81,8 +80,6 @@ class BST(object):
                 self.parent.right_child = None
         elif bool(self.left_child) != bool(self.right_child):
             pass
-    """
-
 
     def __iter__(self):
         if self:
@@ -91,7 +88,6 @@ class BST(object):
             yield self.key
             if self.right_child:
                 yield self.right_child.key
-
 
     @property
     def size(self):
