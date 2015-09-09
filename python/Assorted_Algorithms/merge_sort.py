@@ -26,7 +26,11 @@ def merge_sort(items):
 
     - Runs in O(NlogN) worst-case time
     - Requires 2N space (additional array to merge to/from)
-    - Best used on large sets of data, guaranteed NlogN
+    - Best used on large sets of data, guaranteed NlogN runtime
+    - Easily run in parallel
+    - More efficient than quicksort for linked lists
+    - More efficient than quicksort when dataset is too large for RAM
+        - quicksort requires many random seeks, mergesort reads sequentially
     """
     if len(items) <= 1: # Base case
         return items
