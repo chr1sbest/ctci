@@ -13,7 +13,7 @@ class Vertex(object):
         self.distance = maxint
 
 
-def dijkstra(starting_node, ending_node):
+def dijkstras(starting_node, ending_node):
     # Initialize distance to starting node as 0 and initialize min heap
     starting_node.distance = 0
     minheap = [(0, starting_node)]
@@ -52,7 +52,7 @@ def test_dijkstras():
     vertex_t.adjacent_nodes = {vertex_c: 3, vertex_d: 5}
 
     # s -> b -> d = 3
-    shortest_from_s_to_d = dijkstra(vertex_s, vertex_d)
+    shortest_from_s_to_d = dijkstras(vertex_s, vertex_d)
     assert shortest_from_s_to_d == 3
 
     # Reset distance and visited value for all vertices
@@ -60,5 +60,5 @@ def test_dijkstras():
         vertex.reset()
 
     # d -> c = 11  ||  d -> t -> c = 8
-    shortest_from_d_to_c = dijkstra(vertex_d, vertex_c)
+    shortest_from_d_to_c = dijkstras(vertex_d, vertex_c)
     assert shortest_from_d_to_c == 8
