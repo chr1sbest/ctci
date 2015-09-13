@@ -32,14 +32,16 @@ class DisjointSet(object):
         # the lesser_root parent to the parent of the greater_root
         lesser_root.parent = greater_root
 
+
 def test_disjoin_set():
-    a = DisjointSet({'id': 'a'})
-    b = DisjointSet({'id': 'b'})
-    c = DisjointSet({'id': 'c'})
-    d = DisjointSet({'id': 'd'})
-    e = DisjointSet({'id': 'e'})
-    f = DisjointSet({'id': 'f'})
-    g = DisjointSet({'id': 'g'})
+    # Initialize individual sets
+    a = DisjointSet('a')
+    b = DisjointSet('b')
+    c = DisjointSet('c')
+    d = DisjointSet('d')
+    e = DisjointSet('e')
+    f = DisjointSet('f')
+    g = DisjointSet('g')
 
     # Test basic union/find
     a.union(b)
@@ -56,7 +58,7 @@ def test_disjoin_set():
     # Combine the sets to check that ranking is properly compared and the
     # smaller set is added onto the larger set. We will check that a member
     # of Set D {D, E, F, G} will now have the same parent as a member from
-    # Set A {A, B, C}. Specifically, we will check that the parent is from
+    # Set A {A, B, C}. Specifically, we will check that this parent is from
     # the larger of the sets (D).
     d.union(a)
     assert f.find() == c.find()
