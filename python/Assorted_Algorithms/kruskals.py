@@ -7,7 +7,9 @@ class Edge(object):
         self.weight = weight
 
 
-def kruskals(edges, vertices):
+def kruskals(edges):
+    """ Given a list of edges, determine the minimum spanning tree. 
+    Requires each vertex of the edges to be initialized as a Disjoint set."""
     sorted_edges = sorted(edges, key=lambda x: x.weight)
     minimum_spanning_tree = set()
     for edge in sorted_edges:
@@ -18,13 +20,14 @@ def kruskals(edges, vertices):
 
 
 def test_kruskals():
-    # We will initialize each vertex as a DisjointSet
+    # Initialize each vertex as a DisjointSet. These vertices will
+    # have methods/attributes necessary for union/find functionality.
     a = DisjointSet('a')
     b = DisjointSet('b')
     c = DisjointSet('c')
     d = DisjointSet('d')
-    vertices = [a, b, c, d]
 
+    # Initialize all edges with (vertex1, vertex2, weight)
     edge_1 = Edge(a, b, 1)
     edge_2 = Edge(a, c, 5)
     edge_3 = Edge(a, d, 3)
@@ -33,8 +36,7 @@ def test_kruskals():
     edge_6 = Edge(c, d, 1)
     edges = [edge_1, edge_2, edge_3, edge_4, edge_5, edge_6]
 
-    # Expected = {(A, B, 1), (C, D, 1), (B, D, 2)
+    # Expected = {(A, B, 1), (C, D, 1), (B, D, 2)}
     expected_minimum_spanning_tree = set([edge_1, edge_5, edge_6])
-    result = kruskals(edges, vertices)
-    assert result == expected_minimum_spanning_tree
+    assert kruskals(edges) == expected_minimum_spanning_tree
 
