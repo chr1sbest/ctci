@@ -1,18 +1,13 @@
-def reverse_C(s):
-    """
-    Reverse a null-terminated string.
-    String needs to end in None or *.
-    """
-    assert s[-1] == None or s[-1] == '*', \
-        'Needs to be null-terminated with "*" or None'
-    return s[:-1][::-1] + s[-1:]
+def reverse_null_terminated_string(input_string):
+    """Reverse a null-terminated string."""
+    assert input_string[-1] in [None, '*']
+    # Slice the string from 0->null char, reverse this slice
+    # and then add the null char to the end.
+    return input_string[:-1][::-1] + input_string[-1:]
 
 
-if __name__ == "__main__":
-    s1 = ['s', 't', 'r', None]
-    s2 = ['c', 'h', 'r', 'i', 's', '*']
-    print '["s", "t", "r", None] => ' + str(reverse_C(s1))
-    print 'list("chris*") => ' + str(reverse_C(s2))
-
-
-
+def test_reverse():
+    chris = reverse_null_terminated_string('chris*')
+    assert chris == 'sirhc*'
+    what = reverse_null_terminated_string(['w','h','a','t','*'])
+    assert what == ['t', 'a', 'h', 'w', '*']

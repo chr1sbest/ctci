@@ -1,35 +1,41 @@
-def unique(s, totalLetters=128):
-    """
-    Returns boolean for whether all characters in a string are unique.
+def unique(input_string, total_letters=128):
+    """ Determine if all characters in a string are unique.
+    Keep a hashtable to record whether a character has been seen while
+    iterating over all of the characters in the input string.
+
     Time: O(n)
     Space: O(n)
     """
-    if len(s) > totalLetters:
+    # Return in O(1) if impossible for all unique
+    if len(input_string) > total_letters:
         return False
 
-    letters = {}  #Make boolean hashtable of size = totalLetters
-    for letter in s:
+    # Initialize boolean hashtable of size = totalLetters
+    letters = {}
+    for letter in input_string:
         if letter in letters:
             return False
         letters[letter] = True
     return True
 
-def unique2(s):
-    """
-    Returns boolean for whether all characters in a string are unique.
+def unique_alternate(input_string):
+    """ Determine if all characters in a string are unique. Sort the string
+    and then iterate over each character, comparing each character to the
+    previous character.
+
     Time: O(n*log(n))
     Space: O(1)
     """
-    sorted_string = ''.join(sorted(s))
+    sorted_string = ''.join(sorted(input_string))
+    last_character = None
     for index, letter in enumerate(sorted_string):
-        try:
-            if sorted_string[index] == sorted_string[index + 1]:
-                return False
-        except:
-            pass
+        if letter == last_character:
+            return False
+        last_character = letter
     return True
 
-
-if __name__ == "__main__":
-    print '"Chris" unique? ' + str(unique('Chris'))
-    print '"Hello" unique? ' + str(unique('Hello'))
+def test_unique():
+    assert unique('hello_friend') == False
+    assert unique_alternate('hello_friend') == False
+    assert unique('waldo') == True
+    assert unique_alternate('waldo') == True

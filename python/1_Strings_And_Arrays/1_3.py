@@ -1,24 +1,24 @@
-def perm(s1, s2):
-    """
-    Returns boolean for whether S1 is a permutation of S2.
-    Optimizations for speed
+def is_permutation(string_1, string_2):
+    """ Determine if one string is a permutation of another.
     Time: O(n*logn) -> O(1) BEST CASE
     Space: O(n)
     """
-    #Use fastest methods first
-    if len(s1) != len(s2): 
-        return False #O(1) Time Complexity if false
-    if sum(bytearray(s1)) != sum(bytearray(s2)): 
-        return False #O(n) Time Complexity if false
+    # Try fastest checks first
+    # O(1)
+    if len(string_1) != len(string_2):
+        return False
+    # O(n+m)
+    if sum(bytearray(string_1)) != sum(bytearray(string_2)):
+        return False
 
-    #Compare sorted chars as final resort, O(n*logn) Time Complexity
-    sorted1, sorted2, = sorted(s1), sorted(s2)
+    # Compare sorted chars as final resort, O(n*logn)
+    sorted1, sorted2, = sorted(string_1), sorted(string_2)
     for index, char in enumerate(sorted1):
         if char != sorted2[index]:
             return False
     return True 
 
 
-if __name__ == "__main__":
-    print '"hi" and "ih" perm? ' + str(perm('hi', 'ih'))
-    print '"hi" and "hello" perm? ' + str(perm('hi', 'hello'))
+def test_is_perm():
+    assert is_permutation('hi', 'ih') == True
+    assert is_permutation('hi', 'hello') == False
